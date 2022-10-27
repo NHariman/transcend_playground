@@ -1,5 +1,5 @@
 # NestJS notes
-
+Video: [link](https://www.youtube.com/watch?v=F_oOtaxb0L8)
 Based on ExpressJS.
 
 install nestjs using: (you may need to sudo, which is probably why we need docker.)
@@ -166,4 +166,7 @@ getHello(): {name: string} {
 naming convention:
 `feature.type_of_file.ts`
 
+# helpful packages:
+NestJS has its own exceptions packages for NotFound etc.
 
+NestJS supports throw, like in C++
