@@ -1,5 +1,11 @@
 # NestJS notes
 Video: [link](https://www.youtube.com/watch?v=F_oOtaxb0L8)
+What does the video explain:
+- first 20 minutes is intro to nestjs
+- explains making a product class cleanly through the module, controller, service, model method.
+- creating simple functions like adding, updating, finding and deleting products
+
+
 Based on ExpressJS.
 
 install nestjs using: (you may need to sudo, which is probably why we need docker.)
