@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from "@nestjs/common";
+import { Controller, Post, Get, Body } from "@nestjs/common";
 import { ChatService } from "./chat.service";
 
 @Controller('chat')
@@ -7,9 +7,16 @@ export class ChatController {
 	@Post()
 	addMessage(
 		@Body('user') chatUser: string, 
-		@Body('message') chatMessage: string) {
-		const generatedMessage = this.chatService.insertMessage(chatUser, chatMessage);
-		return {user: generatedMessage };
+		@Body('message') chatMessage: string) : any
+		{
+			const timeStamp = new Date().toString();
+			const generatedMessage = this.chatService.insertMessage(chatUser, chatMessage, timeStamp);
+			return {user: generatedMessage };
+		}
+
+	@Get()
+	getAllMessages() {
+		return this.chatService.getMessage();
 	}
 }
 
