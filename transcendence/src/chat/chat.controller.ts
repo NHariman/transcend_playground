@@ -1,23 +1,26 @@
-import { Controller, Post, Get, Body } from "@nestjs/common";
+import { Body,
+	Controller,
+	Get,
+	Param,
+	ParseIntPipe,
+	Post,
+	UsePipes,
+	ValidationPipe, } from "@nestjs/common";
 import { ChatService } from "./chat.service";
+import { StoreMessageDto  } from "src/dto/chat.dto";
 
 @Controller('chat')
 export class ChatController {
 	constructor(private readonly chatService: ChatService) {}
-	@Post()
-	addMessage(
-		@Body('user') chatUser: string, 
-		@Body('message') chatMessage: string) : any
-		{
-			const timeStamp = new Date().toString();
-			const generatedMessage = this.chatService.insertMessage(chatUser, chatMessage, timeStamp);
-			return {user: generatedMessage };
-		}
 
 	@Get()
-	getAllMessages() {
-		return this.chatService.getMessage();
+	getMessages() {
+		return this.chatService.getMessages();
+	}
+
+	@Post('create')
+	@UsePipes(ValidationPipe)
+	createUsers(@Body() storeMessagedto: StoreMessageDto) {
+	  return this.chatService.saveMessage(storeMessagedto);
 	}
 }
-
-// readonly means you will never replace this instance/ChatService with something else

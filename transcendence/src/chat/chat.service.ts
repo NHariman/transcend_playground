@@ -1,17 +1,32 @@
 import { Injectable } from "@nestjs/common";
-import { ChatMessage } from "./chat.model";
+import { Repository } from 'typeorm';
+import { Chat } from "src/database";
+import { InjectRepository } from '@nestjs/typeorm';
+import { StoreMessageDto } from 'src/dto/chat.dto';
+
 
 @Injectable()
 export class ChatService {
-	private chat: ChatMessage[] = [];
-	insertMessage(user: string, message: string, timeStamp: string) {
-		const newMessage = new ChatMessage(user, message, timeStamp);
+	constructor(
+		@InjectRepository(Chat) private readonly chatRepository:
+		Repository<Chat>,
+	) {}
 
-		this.chat.push(newMessage);
-		return message;
+	saveMessage(storeMessageDto: StoreMessageDto) {
+		const newMessage = this.chatRepository.create(storeMessageDto);
+		return this.chatRepository.save(newMessage);
 	}
 
-	getMessage() {
-		return [...this.chat]; // spread operator, pulls out all the elements of chat and puts it in a new array add .map to ensure things cannot be edited at random
+	getMessages() {
+		return this.chatRepository.find();
 	}
+
+	// getMessagesFromUser(id: number) {
+	// 	return this.chatRepository.find({
+	// 		where: [
+	// 			{ user_id: id }
+	// 		]
+	// 	});
+	// }
 }
+
