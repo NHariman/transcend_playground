@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from 'src/database';
 import { Repository } from 'typeorm';
-import { CreateUserDto } from 'src/dto/user.dto';
+import { CreateUserDto } from './dto/user.dto';
 
 /*
 	This is where the code is actually written

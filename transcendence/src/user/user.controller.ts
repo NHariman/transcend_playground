@@ -7,7 +7,7 @@ import { Body,
 	UsePipes,
 	ValidationPipe, } from "@nestjs/common";
 import { UserService } from "./user.service";
-import { CreateUserDto } from 'src/dto/user.dto';
+import { CreateUserDto } from './dto/user.dto';
 
 /*
 	This is where you find all the available methods for 

@@ -3,7 +3,7 @@ import { Repository } from 'typeorm';
 import { Chat } from "src/database";
 import { User } from "src/database";
 import { InjectRepository } from '@nestjs/typeorm';
-import { StoreMessageDto } from 'src/dto/chat.dto';
+import { StoreMessageDto } from './dto/chat.dto';
 
 /*
 	This is where the code is actually written

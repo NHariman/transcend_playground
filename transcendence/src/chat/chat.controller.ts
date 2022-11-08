@@ -7,7 +7,7 @@ import { Body,
 	UsePipes,
 	ValidationPipe, } from "@nestjs/common";
 import { ChatService } from "./chat.service";
-import { StoreMessageDto  } from "src/dto/chat.dto";
+import { StoreMessageDto  } from "./dto/chat.dto";
 
 /*
 	This is where you find all the available methods for 
