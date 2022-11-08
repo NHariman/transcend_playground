@@ -1,11 +1,15 @@
 import { IsEmail, IsNotEmpty, MinLength } from "class-validator";
+import { User } from "src/database";
 
-// how do you make create message
-// function that also stores userid?
+// DTOs stand for data transfer objects
+/*
+  this is what is used to save data into the database
+*/
+
+
 export class StoreMessageDto {
 	@IsNotEmpty()
 	message_body: string;
-
-	user: number;
+	user_id: User;
   }
   

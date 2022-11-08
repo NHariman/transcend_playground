@@ -9,6 +9,13 @@ import { Body,
 import { ChatService } from "./chat.service";
 import { StoreMessageDto  } from "src/dto/chat.dto";
 
+/*
+	This is where you find all the available methods for 
+	localhost:3000/chat
+
+	when a GET or POST is detected it is directed to the service that handles it.
+*/
+
 @Controller('chat')
 export class ChatController {
 	constructor(private readonly chatService: ChatService) {}

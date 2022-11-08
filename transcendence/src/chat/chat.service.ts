@@ -1,9 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { Repository } from 'typeorm';
 import { Chat } from "src/database";
+import { User } from "src/database";
 import { InjectRepository } from '@nestjs/typeorm';
 import { StoreMessageDto } from 'src/dto/chat.dto';
 
+/*
+	This is where the code is actually written
+	After the controler indicates what function should be used to process the information, the data ends up in one of these ChatService functions. Kind of like class methods in cpp.
+*/
 
 @Injectable()
 export class ChatService {
@@ -21,12 +26,10 @@ export class ChatService {
 		return this.chatRepository.find();
 	}
 
-	// getMessagesFromUser(id: number) {
-	// 	return this.chatRepository.find({
-	// 		where: [
-	// 			{ user_id: id }
-	// 		]
-	// 	});
-	// }
+	getMessagesFromUser(user_search: User) {
+		return this.chatRepository.find({
+			relations: ['user']
+		});
+	}
 }
 

@@ -4,6 +4,11 @@ import { ChatController } from "./chat.controller";
 import { ChatService } from "./chat.service";
 import { Chat } from 'src/database'
 
+/*
+	This is the module, it needs to be imported in app.module.ts as that's what gets called in the main.ts
+	it basically holds the information of the controller and service.
+*/
+
 @Module({
 	imports: [TypeOrmModule.forFeature([Chat]),],	
 	controllers: [ChatController],

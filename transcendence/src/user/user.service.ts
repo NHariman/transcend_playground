@@ -4,6 +4,11 @@ import { User } from 'src/database';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from 'src/dto/user.dto';
 
+/*
+	This is where the code is actually written
+	After the controler indicates what function should be used to process the information, the data ends up in one of these ChatService functions. Kind of like class methods in cpp.
+*/
+
 @Injectable()
 export class UserService {
 	constructor(
@@ -19,10 +24,10 @@ export class UserService {
 		return this.userRepository.find();
 	  }
 	  
-	findUsersById(id: number) {
+	findUsersById(search_id: number) {
 		return this.userRepository.find({
 			where: [
-			{ user_id: id }
+			{ id: search_id }
 		  ]
 		});
 	  }

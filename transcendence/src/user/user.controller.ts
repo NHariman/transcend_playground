@@ -9,6 +9,13 @@ import { Body,
 import { UserService } from "./user.service";
 import { CreateUserDto } from 'src/dto/user.dto';
 
+/*
+	This is where you find all the available methods for 
+	localhost:3000/user
+
+	when a GET or POST is detected it is directed to the service that handles it.
+*/
+
 @Controller('user')
 export class UserController {
 	constructor(private readonly userService: UserService) {}
