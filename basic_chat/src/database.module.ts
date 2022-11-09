@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from './user/user.entity';
+import { Message } from './message/message.entity';
  
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { User } from './user/user.entity';
         database: configService.get('DB_NAME'),
         entities: [
 			User,
+			Message,
         ],
         synchronize: true,
       })
