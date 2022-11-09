@@ -14,12 +14,12 @@ export class UserService {
 		return this.userRepository.find();
 	};
 
-	create(createUserDto: CreateUserDto){
+	async create(createUserDto: CreateUserDto){
 		const newUser = this.userRepository.create(createUserDto);
 		return this.userRepository.save(newUser);
 	};
 
-	findUser(email: string){
+	async findUser(email: string){
 		const found_user = this.userRepository.findOneBy({
 			email: email
 		});
@@ -29,7 +29,7 @@ export class UserService {
 		return found_user;
 	};
 
-	findUserById(id: number){
+	async findUserById(id: number){
 		const found_user = this.userRepository.findOneBy({
 			id: id
 		});
@@ -39,7 +39,7 @@ export class UserService {
 		return found_user;
 	};
 
-	async deletePost(id: number) {
+	async deleteUser(id: number) {
 		const deleteResponse = await this.userRepository.delete(id);
 		if (!deleteResponse.affected) {
 		  throw new HttpException('User not found', HttpStatus.NOT_FOUND);
