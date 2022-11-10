@@ -21,14 +21,19 @@ export class MessageService {
 		return this.messageRepository.save(newMessage);
 	}
 
-	async getMessageById(id: number) {
-		const message = await this.messageRepository.findOneBy({
-			id:id
-		});
-		if (message) {
-		  return message;
-		}
-		throw new HttpException('Posts not found', HttpStatus.NOT_FOUND);
-	}
+	// async getMessageById(id: number) {
+	// 	const message = await this.messageRepository.findOne({
+	// 		where: {
+	// 			user_id
+	// 		},
+	// 		relations: {
+				
+	// 		}
+	// 	});
+	// 	if (message) {
+	// 	  return message;
+	// 	}
+	// 	throw new HttpException('Posts not found', HttpStatus.NOT_FOUND);
+	// }
 }
 
