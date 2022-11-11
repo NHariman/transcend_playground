@@ -40,7 +40,7 @@ export class UserService {
 	};
 
 	async getUserMessages(username : string){
-		// this is how you do it from the opposite side, gets user and displays all messages by said user
+		// this is how you do it from the opposite side, gets user and displays all messages by said user (Og from message.service.ts)
 		const users = await this.userRepository.find({
 			select: ["id", "username", "email"],
 			where: {

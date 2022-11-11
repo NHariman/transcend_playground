@@ -8,6 +8,11 @@ npm install class-validator
 npm install @hapi/joi @types/hapi__joi
 ```
 
+## Packages to install frontend
+```
+npm install axios --save
+```
+
 ## Linking app with db
 1. create an .env file and fill in variables for HOST, PORT, DB_USERNAME, DB_PASSWORD and DB_NAME (you can change the names as you see fit.)
 2. in app.module.ts, apply the ConfigModule and Joi module in imports

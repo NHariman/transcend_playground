@@ -1,7 +1,5 @@
 import { Body, HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CreateUserDto } from "src/user/dto/create_user.dto";
-import { User } from "src/user/user.entity";
 import { Repository } from "typeorm";
 import { CreateMessageDto } from "./dto/create_message.dto";
 import { Message } from "./message.entity";
@@ -29,7 +27,6 @@ export class MessageService {
 	}
 
 	async getMessageByUserId(id: number) {
-
 	const messages = await this.messageRepository.find({
     	relations: {
         	user_id: true,
@@ -54,8 +51,13 @@ export class MessageService {
 		throw new HttpException('Posts not found', HttpStatus.NOT_FOUND);
 	}
 
+	// finds username and retrieves all messages from this user
+	// relations links the user_id column in the message entity with
+	// the id in the user entity
+	// where defines where username is the same as the given username
+	// select shows which columns should be returned
+	// https://typeorm.io/find-options#find-options
 	async getMessageByUsername(username: string) {
-
 		const messages = await this.messageRepository.find({
 			relations: {
 				user_id: true,
