@@ -1,6 +1,7 @@
-import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { Body, HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateUserDto } from "src/user/dto/create_user.dto";
+import { User } from "src/user/user.entity";
 import { Repository } from "typeorm";
 import { CreateMessageDto } from "./dto/create_message.dto";
 import { Message } from "./message.entity";
@@ -13,7 +14,13 @@ export class MessageService {
 	){}
 
 	getAllMessages() {
-		return this.messageRepository.find({ relations: ['user_id']});
+		return this.messageRepository.find({ 
+			relations: ['user_id'],
+			order: {
+				user_id: {
+					id: "asc"
+				}
+			}});
 	}
 
 	async create(createMessageDto : CreateMessageDto) {
@@ -21,19 +28,56 @@ export class MessageService {
 		return this.messageRepository.save(newMessage);
 	}
 
-	// async getMessageById(id: number) {
-	// 	const message = await this.messageRepository.findOne({
-	// 		where: {
-	// 			user_id
-	// 		},
-	// 		relations: {
-				
-	// 		}
-	// 	});
-	// 	if (message) {
-	// 	  return message;
-	// 	}
-	// 	throw new HttpException('Posts not found', HttpStatus.NOT_FOUND);
-	// }
+	async getMessageByUserId(id: number) {
+
+	const messages = await this.messageRepository.find({
+    	relations: {
+        	user_id: true,
+   		},
+		where: {
+			user_id: {
+				id: id
+			}
+		},
+		select: {
+			user_id: {
+				id: true,
+				username: true,
+				email: true
+			},
+			body: true,
+			created_at: true
+		}
+	})
+	if (messages)
+		return messages;
+		throw new HttpException('Posts not found', HttpStatus.NOT_FOUND);
+	}
+
+	async getMessageByUsername(username: string) {
+
+		const messages = await this.messageRepository.find({
+			relations: {
+				user_id: true,
+			   },
+			where: {
+				user_id: {
+					username: username
+				}
+			},
+			select: {
+				user_id: {
+					id: true,
+					username: true,
+					email: true
+				},
+				body: true,
+				created_at: true
+			}
+		})
+		if (messages)
+			return messages;
+			throw new HttpException('Posts not found', HttpStatus.NOT_FOUND);
+		}
 }
 

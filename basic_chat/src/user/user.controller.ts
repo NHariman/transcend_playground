@@ -16,6 +16,11 @@ export class UserController {
 	findUsersById(@Param('id', ParseIntPipe) id: number) {
 		return this.userService.findUserById(id);
 	}
+
+	@Get(':username/messages')
+	getUserMessages(@Param('username') username: string) {
+		return this.userService.getUserMessages(username);
+	}
 	
 	@Delete('id/:id')
 	deleteUser(@Param('id', ParseIntPipe) id: number){
