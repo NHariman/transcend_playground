@@ -11,6 +11,7 @@ npm install @hapi/joi @types/hapi__joi
 ## Packages to install frontend
 ```
 npm install axios --save
+npm install -g @vue/cli
 ```
 
 ## Linking app with db

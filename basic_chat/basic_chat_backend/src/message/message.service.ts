@@ -15,9 +15,7 @@ export class MessageService {
 		return this.messageRepository.find({ 
 			relations: ['user_id'],
 			order: {
-				user_id: {
-					id: "asc"
-				}
+				created_at: "asc"
 			}});
 	}
 
